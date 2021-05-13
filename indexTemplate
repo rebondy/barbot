@@ -1,0 +1,79 @@
+<html>
+<!-- Websocket client for controlling ACROBOTIC's wheeled robot PyPi-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v3.0.1/dist/mini-default.min.css">
+<body onload="javascript:mc_init()">
+  <div class="container">
+    <div class="row cols-sm-6 col-sm-offset-4">
+      <!-- Adding a slider for controlling strength -->
+      <input type="range" min="0" max="2" value="1" id="strengthSlider"
+      oninput="setStrength()" />
+      <label style="text:center" for="strengthSlider" id="strengthLabel">Strength:
+      1 shot(s) </label>
+    </div>
+    <div class="row cols-sm-6 col-sm-offset-4">
+        <button class="primary" id="drinkTag1">Margarita</button>
+        <button class="primary" id="drinkTag2">Sea Breeze</button>
+        <button class="primary" id="drinkTag3">Screwdriver</button>
+        <button class="primary" id="drinkTag4">Bay Breeze</button>
+        <button class="primary" id="drinkTag5">Harpoon</button>
+        <button class="primary" id="drinkTag6">Mojito</button>
+        <button class="primary" id="drinkTag7">Kamikaze</button>
+        <button class="primary" id="drinkTag8">Cosmopolitan</button>
+        <!--placeHolder1-->
+        <!--placeHolder2-->
+        <!--placeHolder3-->
+        <!--placeHolder4-->
+        <!--placeHolder5-->
+        <!--placeHolder6-->
+        <!--placeHolder7-->
+        <!--placeHolder8-->
+        <!--placeHolder9-->
+        <!--placeHolder10-->
+        <!--placeHolder11-->
+        <!--placeHolder12-->
+        <!--placeHolder13-->
+        <!--placeHolder14-->
+        <!--placeHolder15-->
+        <!--placeHolder16-->
+        <!--placeHolder17-->
+        <!--placeHolder18-->
+        <!--placeHolder19-->
+        <!--placeHolder20-->
+    </div>
+  </div>
+<script
+<script>
+  // Create global scope variables
+	var socket, strength=1;
+  function mc_init() {
+    // Initialiaze the websocket client
+		socket = new WebSocket('ws://' + window.location.hostname + ':81/');
+    var buttons = document.getElementsByTagName('button');
+    for(i=0;i<buttons.length;i++) {
+      buttons[i].addEventListener('mousedown',move,true);
+      buttons[i].addEventListener('mouseup',stop,true);
+      buttons[i].addEventListener('touchstart',move,true);
+      buttons[i].addEventListener('touchend',stop,true);
+    }
+  }
+  function setStrength() {
+    strength = document.getElementById("strengthSlider").value;
+    strength = parseInt(strength).toFixed(0);
+    document.getElementById("strengthLabel").innerHTML = "Strength: " + strength + " shot(s)";
+    return false;
+  }
+  function move(e) {
+    e.preventDefault(); // prevent copy-paste menu pop-up on mobile!
+    var data = {'direction':e.srcElement.id,'strength':strength};
+	  socket.send(JSON. stringify(data));
+    return false;
+  }
+  function stop() {
+    var data = {'direction':'STP'};
+	  socket.send(JSON. stringify(data));
+    return false;
+  }
+</script>
+</body>
+</html>

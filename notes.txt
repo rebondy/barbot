@@ -1,0 +1,15 @@
+Notes on Bar Bot App/ESP
+
+--- Using indexTemplate ---
+User uses app to input what liquids they have put into the machine
+App figures out what drinks they can make
+App replaces the "<!--placeHolder#-->", (# replaced with n from 1 to 20) with "<button class="primary" id="drinkTag">drinkButtonName</button>"
+
+the "id" is what servos turn for how long and when/where they turn
+Example: id="s1,p2,0,30"   ---> servo 1 turns to position 2 at time = 0 seconds and stays open for 30 seconds
+
+
+
+Overlap on this one was:  3
+Servo 1 is :  ['Gin', 'Wiskey', 'Lime Juice'] Servo 2 is :  ['Sugar Syrup', 'Cranberry Juice', 'Vermouth'] Servo 3 is :  ['Lemon Juice', 'Tequila', 'White Rum'] Servo 4 is :  ['Angostura Bitters', 'Vodka', 'Cointreau']
+
